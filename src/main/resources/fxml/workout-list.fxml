@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amercogo.fitnessapp.ui.controllers.WorkoutListController">
+
+    <top>
+        <ToolBar>
+            <Button text="Add Workout" onAction="#onAdd"/>
+            <Button text="Delete Selected" onAction="#onDelete"/>
+            <Button text="Refresh" onAction="#onRefresh"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn fx:id="nameCol" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="dateCol" text="Date" prefWidth="150"/>
+                <TableColumn fx:id="durationCol" text="Duration (min)" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
