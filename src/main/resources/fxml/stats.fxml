@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amercogo.fitnessapp.ui.controllers.StatsController"
+      spacing="12">
+
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <Label text="Stats / Overview" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="45"/>
+            <ColumnConstraints percentWidth="55"/>
+        </columnConstraints>
+
+        <Label text="Total workouts:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="totalWorkoutsLabel" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Total minutes:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="totalMinutesLabel" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Average duration:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="avgDurationLabel" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Last workout date:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="lastDateLabel" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10">
+        <Button text="Refresh" onAction="#onRefresh"/>
+        <Button text="Close" onAction="#onClose"/>
+        <Label fx:id="statusLabel"/>
+    </HBox>
+
+</VBox>

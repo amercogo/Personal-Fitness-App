@@ -12,6 +12,8 @@
             <Button text="Add Workout" onAction="#onAdd"/>
             <Button text="Delete Selected" onAction="#onDelete"/>
             <Button text="Refresh" onAction="#onRefresh"/>
+            <Button text="Export PDF" onAction="#onExportPdf"/>
+            <Button text="Stats" onAction="#onOpenStats"/>
         </ToolBar>
     </top>
 
