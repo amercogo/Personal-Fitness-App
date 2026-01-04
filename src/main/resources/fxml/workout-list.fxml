@@ -14,6 +14,7 @@
             <Button text="Refresh" onAction="#onRefresh"/>
             <Button text="Export PDF" onAction="#onExportPdf"/>
             <Button text="Stats" onAction="#onOpenStats"/>
+            <Button text="Sets" onAction="#onOpenSets"/>
         </ToolBar>
     </top>
 

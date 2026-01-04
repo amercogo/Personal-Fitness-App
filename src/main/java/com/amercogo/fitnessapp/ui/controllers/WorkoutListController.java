@@ -251,4 +251,32 @@ public class WorkoutListController {
     }
 
 
+    @FXML
+    private void onOpenSets() {
+        Workout selected = table.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/fxml/workout-sets.fxml")
+            );
+
+            javafx.scene.Scene scene = new javafx.scene.Scene(loader.load(), 1050, 420);
+
+            WorkoutSetsController controller = loader.getController();
+            controller.setWorkout(selected);
+
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Sets - " + selected.getName());
+            stage.initOwner(table.getScene().getWindow());
+            stage.initModality(javafx.stage.Modality.WINDOW_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 }

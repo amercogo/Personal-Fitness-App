@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amercogo.fitnessapp.ui.controllers.WorkoutSetsController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+
+            <Label fx:id="titleLabel" text="Workout Sets" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="10">
+                <Label text="Exercise:"/>
+                <ComboBox fx:id="exerciseCombo" prefWidth="260"/>
+
+                <Label text="Set #"/>
+                <Spinner fx:id="setNoSpinner" prefWidth="90"/>
+
+                <Label text="Reps"/>
+                <Spinner fx:id="repsSpinner" prefWidth="90"/>
+
+                <Label text="Kg"/>
+                <TextField fx:id="kgField" prefWidth="90" promptText="e.g. 60"/>
+
+                <Button text="Add Set" onAction="#onAddSet"/>
+                <Button text="Delete Selected" onAction="#onDeleteSelected"/>
+                <Button text="Refresh" onAction="#onRefresh"/>
+                <Button text="Close" onAction="#onClose"/>
+            </HBox>
+
+            <Label fx:id="statusLabel" text=""/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn fx:id="setNoCol" text="Set" prefWidth="80"/>
+                <TableColumn fx:id="exerciseCol" text="Exercise" prefWidth="260"/>
+                <TableColumn fx:id="repsCol" text="Reps" prefWidth="100"/>
+                <TableColumn fx:id="kgCol" text="Kg" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
