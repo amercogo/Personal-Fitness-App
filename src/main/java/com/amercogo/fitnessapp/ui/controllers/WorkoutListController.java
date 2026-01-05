@@ -1,5 +1,6 @@
 package com.amercogo.fitnessapp.ui.controllers;
 
+import com.amercogo.fitnessapp.auth.SessionManager;
 import com.amercogo.fitnessapp.db.repositories.WorkoutRepository;
 import com.amercogo.fitnessapp.model.Workout;
 import javafx.collections.FXCollections;
@@ -273,6 +274,46 @@ public class WorkoutListController {
             stage.setScene(scene);
             stage.showAndWait();
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void onOpenProfile() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/fxml/profile.fxml")
+            );
+
+            javafx.scene.Scene scene = new javafx.scene.Scene(loader.load(), 520, 240);
+
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Profile");
+            stage.initOwner(table.getScene().getWindow());
+            stage.initModality(javafx.stage.Modality.WINDOW_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void onLogout() {
+        SessionManager.clear();
+
+        try {
+            javafx.stage.Stage stage = (javafx.stage.Stage) table.getScene().getWindow();
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/fxml/login.fxml")
+            );
+            javafx.scene.Scene scene = new javafx.scene.Scene(loader.load(), 420, 220);
+            stage.setTitle("Login");
+            stage.setScene(scene);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

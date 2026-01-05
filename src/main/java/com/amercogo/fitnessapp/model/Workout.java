@@ -21,8 +21,6 @@ public class Workout {
         this.durationMinutes = durationMinutes;
     }
 
-    // getters & setters
-
     public String getId() {
         return id;
     }

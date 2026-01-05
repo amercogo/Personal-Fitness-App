@@ -15,6 +15,9 @@
             <Button text="Export PDF" onAction="#onExportPdf"/>
             <Button text="Stats" onAction="#onOpenStats"/>
             <Button text="Sets" onAction="#onOpenSets"/>
+            <Button text="Profile" onAction="#onOpenProfile"/>
+            <Button text="Logout" onAction="#onLogout"/>
+
         </ToolBar>
     </top>
 

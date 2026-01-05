@@ -9,11 +9,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/workout-list.fxml")
-        );
-        Scene scene = new Scene(loader.load(), 800, 500);
-        stage.setTitle("Personal Fitness App");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(loader.load(), 420, 220);
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
@@ -22,3 +20,4 @@ public class MainApp extends Application {
         launch(args);
     }
 }
+

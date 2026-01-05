@@ -1,5 +1,6 @@
 package com.amercogo.fitnessapp.db.repositories;
 
+import com.amercogo.fitnessapp.auth.SessionManager;
 import com.amercogo.fitnessapp.db.DBConnection;
 import com.amercogo.fitnessapp.model.WorkoutSet;
 
@@ -10,26 +11,36 @@ import java.util.Optional;
 
 public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> {
 
+    private String requireUserId() {
+        String uid = SessionManager.getUserId();
+        if (uid == null || uid.isBlank()) throw new IllegalStateException("Not logged in (missing userId).");
+        return uid;
+    }
+
     @Override
     public WorkoutSet save(WorkoutSet s) {
+        String uid = requireUserId();
+
         String sql = """
-                insert into public.workout_sets (workout_id, exercise_id, set_no, reps, weight_kg)
-                values (?, ?, ?, ?, ?)
+                insert into public.workout_sets (user_id, workout_id, exercise_id, set_no, reps, weight_kg)
+                values (?, ?, ?, ?, ?, ?)
                 returning id
                 """;
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setObject(1, s.getWorkoutId(), Types.OTHER);
-            ps.setObject(2, s.getExerciseId(), Types.OTHER);
-            ps.setInt(3, s.getSetNo());
-            ps.setInt(4, s.getReps());
-            ps.setBigDecimal(5, java.math.BigDecimal.valueOf(s.getWeightKg()));
+            ps.setObject(1, uid, Types.OTHER);
+            ps.setObject(2, s.getWorkoutId(), Types.OTHER);
+            ps.setObject(3, s.getExerciseId(), Types.OTHER);
+            ps.setInt(4, s.getSetNo());
+            ps.setInt(5, s.getReps());
+            ps.setBigDecimal(6, java.math.BigDecimal.valueOf(s.getWeightKg()));
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) s.setId(rs.getString("id"));
             }
+
             return s;
 
         } catch (SQLException ex) {
@@ -39,16 +50,19 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
 
     @Override
     public Optional<WorkoutSet> findById(String id) {
+        String uid = requireUserId();
+
         String sql = """
                 select id, workout_id, exercise_id, set_no, reps, weight_kg
                   from public.workout_sets
-                 where id = ?
+                 where id = ? and user_id = ?
                 """;
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setObject(1, id, Types.OTHER);
+            ps.setObject(2, uid, Types.OTHER);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) return Optional.of(mapRow(rs));
@@ -62,18 +76,24 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
 
     @Override
     public List<WorkoutSet> findAll() {
+        String uid = requireUserId();
+
         String sql = """
                 select id, workout_id, exercise_id, set_no, reps, weight_kg
                   from public.workout_sets
+                 where user_id = ?
                  order by created_at desc
                 """;
 
         List<WorkoutSet> list = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            while (rs.next()) list.add(mapRow(rs));
+            ps.setObject(1, uid, Types.OTHER);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
             return list;
 
         } catch (SQLException ex) {
@@ -82,10 +102,12 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
     }
 
     public List<WorkoutSet> findByWorkoutId(String workoutId) {
+        String uid = requireUserId();
+
         String sql = """
                 select id, workout_id, exercise_id, set_no, reps, weight_kg
                   from public.workout_sets
-                 where workout_id = ?
+                 where workout_id = ? and user_id = ?
                  order by set_no asc, created_at asc
                 """;
 
@@ -94,6 +116,7 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setObject(1, workoutId, Types.OTHER);
+            ps.setObject(2, uid, Types.OTHER);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) list.add(mapRow(rs));
@@ -107,10 +130,12 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
 
     @Override
     public void update(WorkoutSet s) {
+        String uid = requireUserId();
+
         String sql = """
                 update public.workout_sets
                    set exercise_id = ?, set_no = ?, reps = ?, weight_kg = ?
-                 where id = ?
+                 where id = ? and user_id = ?
                 """;
 
         try (Connection conn = DBConnection.getConnection();
@@ -121,6 +146,7 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
             ps.setInt(3, s.getReps());
             ps.setBigDecimal(4, java.math.BigDecimal.valueOf(s.getWeightKg()));
             ps.setObject(5, s.getId(), Types.OTHER);
+            ps.setObject(6, uid, Types.OTHER);
 
             ps.executeUpdate();
 
@@ -131,12 +157,15 @@ public class WorkoutSetRepository implements CrudRepository<WorkoutSet, String> 
 
     @Override
     public void deleteById(String id) {
-        String sql = "delete from public.workout_sets where id = ?";
+        String uid = requireUserId();
+
+        String sql = "delete from public.workout_sets where id = ? and user_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setObject(1, id, Types.OTHER);
+            ps.setObject(2, uid, Types.OTHER);
             ps.executeUpdate();
 
         } catch (SQLException ex) {
