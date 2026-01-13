@@ -1,0 +1,260 @@
+/* ================= ROOT ================= */
+.login-root {
+    -fx-background-color: transparent;
+}
+
+/* ================= BACKGROUND ================= */
+.bg-gradient {
+    -fx-background-color:
+        radial-gradient(center 20% 10%, radius 80%, rgba(140, 200, 255, 0.55), transparent 60%),
+        radial-gradient(center 85% 20%, radius 70%, rgba(90, 150, 255, 0.35), transparent 62%),
+        linear-gradient(to bottom right, #06142a, #0b2a57, #0a3a7a);
+}
+
+.bg-glow {
+    -fx-background-color:
+        radial-gradient(center 35% 65%, radius 65%, rgba(0, 190, 255, 0.18), transparent 65%),
+        radial-gradient(center 75% 75%, radius 55%, rgba(120, 90, 255, 0.14), transparent 70%);
+}
+
+/* ================= WINDOW SHELL ================= */
+.window-shell {
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-border-color: rgba(255,255,255,0.16);
+    -fx-border-width: 1;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 28, 0.25, 0, 14);
+}
+
+/* ================= TITLE BAR ================= */
+.titlebar {
+    -fx-min-height: 44px;
+    -fx-padding: 10 14;
+    -fx-alignment: center-left;
+
+    -fx-background-radius: 22 22 0 0;
+    -fx-background-color: linear-gradient(to right, #0ea5ff, #3b82f6, #5b7dff);
+    -fx-border-color: rgba(255,255,255,0.14);
+    -fx-border-width: 0 0 1 0;
+}
+
+.titlebar-text {
+    -fx-text-fill: rgba(255,255,255,0.95);
+    -fx-font-weight: 900;
+    -fx-font-size: 14px;
+    -fx-letter-spacing: 0.4px;
+}
+
+/* ================= CONTENT ================= */
+.content-area {
+    -fx-padding: 22;
+}
+
+/* ================= CARD ================= */
+.glass-card {
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-border-color: rgba(255, 255, 255, 0.18);
+    -fx-border-width: 1;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.40), 26, 0.25, 0, 10);
+}
+
+/* ================= TYPOGRAPHY ================= */
+.title {
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: rgba(255,255,255,0.95);
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255,255,255,0.70);
+    -fx-text-alignment: center;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255,255,255,0.75);
+}
+
+/* ================= INPUTS ================= */
+.text-field-modern {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: rgba(255,255,255,0.10);
+    -fx-border-color: rgba(255,255,255,0.16);
+    -fx-border-width: 1;
+
+    -fx-text-fill: rgba(255,255,255,0.92);
+    -fx-prompt-text-fill: rgba(255,255,255,0.45);
+
+    -fx-padding: 10 12;
+}
+
+.text-field-modern:focused {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-border-color: rgba(110, 190, 255, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(80,180,255,0.35), 18, 0.2, 0, 0);
+}
+
+/* ================= PASSWORD EYE ================= */
+.eye-btn {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: rgba(255,255,255,0.14);
+    -fx-border-color: rgba(255,255,255,0.16);
+    -fx-border-width: 1;
+
+    -fx-text-fill: rgba(255,255,255,0.9);
+    -fx-font-weight: 800;
+    -fx-padding: 8 10;
+}
+
+.eye-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.20);
+}
+
+.eye-btn:selected {
+    -fx-background-color: rgba(120, 190, 255, 0.25);
+    -fx-border-color: rgba(120, 190, 255, 0.55);
+}
+
+/* ================= BUTTONS (FIXED INSETS) ================= */
+.button {
+    -fx-background-insets: 0;
+}
+
+/* Primary */
+.btn-primary {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: linear-gradient(to right, #2fb7ff, #5b7dff);
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-padding: 10 16;
+
+    -fx-effect: dropshadow(gaussian, rgba(60,150,255,0.35), 18, 0.2, 0, 8);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #3cc0ff, #6a89ff);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: linear-gradient(to right, #24a9ef, #4b69e6);
+}
+
+/* Secondary (REGISTRACIJA) */
+.btn-secondary {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: rgba(255,255,255,0.10);
+    -fx-border-color: rgba(255,255,255,0.18);
+    -fx-border-width: 1;
+
+    -fx-text-fill: rgba(255,255,255,0.88);
+    -fx-font-weight: 800;
+    -fx-padding: 10 14;
+}
+
+.btn-secondary:hover {
+    -fx-background-insets: 0;
+    -fx-background-color: rgba(255,255,255,0.14);
+}
+
+.btn-secondary:pressed {
+    -fx-background-insets: 0;
+    -fx-background-color: rgba(255,255,255,0.08);
+}
+
+/* ================= WINDOW BUTTONS ================= */
+.win-btn {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-padding: 6 10;
+}
+
+.win-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.26);
+}
+
+.win-btn-close {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+
+    -fx-background-color: rgba(255, 80, 110, 0.45);
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-padding: 6 10;
+}
+
+.win-btn-close:hover {
+    -fx-background-color: rgba(255, 80, 110, 0.65);
+}
+
+/* ================= STATUS ================= */
+.status {
+    -fx-text-fill: rgba(255,255,255,0.78);
+    -fx-font-size: 12px;
+}
+
+/* ================= PROGRESS ================= */
+.progress-indicator {
+    -fx-progress-color: rgba(180, 220, 255, 0.9);
+}
+
+/* ================= LOGO ================= */
+.logo-img {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 18, 0.3, 0, 6);
+}
+
+/* ================= FOCUS RING OFF ================= */
+.button:focused,
+.toggle-button:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.btn-primary:focused,
+.btn-secondary:focused,
+.win-btn:focused,
+.win-btn-close:focused,
+.eye-btn:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+    -fx-effect: null;
+}

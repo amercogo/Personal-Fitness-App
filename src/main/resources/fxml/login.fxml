@@ -4,34 +4,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.amercogo.fitnessapp.ui.controllers.LoginController"
-      spacing="12">
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.amercogo.fitnessapp.ui.controllers.LoginController"
+           fx:id="root"
+           styleClass="login-root">
 
-    <padding>
-        <Insets top="18" right="18" bottom="18" left="18"/>
-    </padding>
+    <Pane styleClass="bg-gradient"/>
+    <Pane styleClass="bg-glow"/>
 
-    <Label text="Login" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <VBox fx:id="windowShell"
+          styleClass="window-shell"
+          maxWidth="1.7976931348623157E308"
+          maxHeight="1.7976931348623157E308">
 
-    <GridPane hgap="10" vgap="10">
-        <columnConstraints>
-            <ColumnConstraints percentWidth="30"/>
-            <ColumnConstraints percentWidth="70"/>
-        </columnConstraints>
+        <VBox.margin>
+            <Insets top="18" right="18" bottom="18" left="18"/>
+        </VBox.margin>
 
-        <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="emailField" promptText="you@email.com" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <HBox fx:id="titleBar"
+              styleClass="titlebar"
+              alignment="CENTER_LEFT"
+              spacing="10">
 
-        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <PasswordField fx:id="passwordField" promptText="password" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    </GridPane>
+            <Label text="CogoFitness"
+                   styleClass="titlebar-text"
+                   HBox.hgrow="ALWAYS"
+                   maxWidth="1.7976931348623157E308"/>
 
-    <HBox spacing="10">
-        <Button text="Login" onAction="#onLogin"/>
-        <Button text="Register" onAction="#onOpenRegister"/>
-        <Label fx:id="statusLabel"/>
-    </HBox>
+            <Button fx:id="minBtn" text="—" onAction="#onMinimize" styleClass="win-btn"/>
+            <Button fx:id="closeBtn" text="✕" onAction="#onClose" styleClass="win-btn-close"/>
+        </HBox>
 
-</VBox>
+        <StackPane styleClass="content-area">
+            <!-- Ovo je CONTAINER u koji ubacujemo login_card ili register_card -->
+            <StackPane fx:id="cardHost" styleClass="glass-card" maxWidth="520"/>
+        </StackPane>
+
+    </VBox>
+</StackPane>

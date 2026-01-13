@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amercogo.fitnessapp.ui.controllers.RegisterController"
+      fx:id="root"
+      spacing="14"
+      alignment="CENTER">
+
+    <padding>
+        <Insets top="26" right="26" bottom="22" left="26"/>
+    </padding>
+
+    <ImageView fitHeight="100" preserveRatio="true" smooth="true" styleClass="logo-img">
+        <image>
+            <Image url="@../css/logo.png"/>
+        </image>
+    </ImageView>
+
+    <VBox spacing="6" alignment="CENTER">
+        <Label text="Registracija" styleClass="title"/>
+        <Label text="Kreiraj novi račun za CogoFitness."
+               styleClass="subtitle"
+               wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="10" alignment="CENTER">
+
+        <VBox spacing="6" maxWidth="320">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="emailField"
+                       promptText="you@email.com"
+                       styleClass="text-field-modern"/>
+        </VBox>
+
+        <VBox spacing="6" maxWidth="320">
+            <Label text="Lozinka" styleClass="field-label"/>
+
+            <HBox spacing="8">
+                <StackPane HBox.hgrow="ALWAYS">
+                    <PasswordField fx:id="passwordField"
+                                   promptText="••••••••"
+                                   styleClass="text-field-modern"/>
+
+                    <TextField fx:id="passwordVisibleField"
+                               visible="false"
+                               managed="false"
+                               styleClass="text-field-modern"/>
+                </StackPane>
+
+                <ToggleButton fx:id="togglePasswordBtn"
+                              text="👁"
+                              onAction="#onTogglePassword"
+                              styleClass="eye-btn"
+                              focusTraversable="false"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <Label fx:id="statusLabel" styleClass="status" wrapText="true"/>
+
+    <ProgressIndicator fx:id="loading"
+                       visible="false"
+                       managed="false"
+                       prefWidth="18"
+                       prefHeight="18"/>
+
+    <VBox spacing="10" alignment="CENTER">
+        <Button fx:id="createBtn"
+                text="Kreiraj račun"
+                onAction="#onRegister"
+                styleClass="btn-primary"
+                maxWidth="320"/>
+
+        <Button fx:id="backBtn"
+                text="Nazad"
+                onAction="#onBack"
+                styleClass="btn-secondary"
+                maxWidth="320"
+                focusTraversable="false"/>
+    </VBox>
+
+</VBox>
